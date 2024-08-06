@@ -6,33 +6,25 @@ CITY_DATA = {'chicago': 'chicago.csv',
              'new york city': 'new_york_city.csv',
              'washington': 'washington.csv'}
 
+def get_user_input(prompt, valid_options):
+    while True:
+        user_input = input(prompt).lower()
+        if user_input in valid_options:
+            return user_input
+        else:
+            print(f"Please input a valid option: {', '.join(valid_options)}.")
+
 def get_filters():
+
     print('Hello! Let\'s explore some US bikeshare data!')
 
     city_list = ['chicago', 'new york city', 'washington']
     month_list = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
     day_list = ['all', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
 
-    while True:
-        city = input("Please enter city name (chicago, new york city, washington): ").lower()
-        if city in city_list:
-            break
-        else:
-            print("Please input a valid city of chicago, new york city, or washington.")
-
-    while True:
-        month = input("Please enter a period based on months (all, january, february, ... , june): ").lower()
-        if month in month_list:
-            break
-        else:
-            print("Please input a valid month from the list or input 'all' to apply no month filter.")
-
-    while True:
-        day = input("Please enter a day of the week (all, monday, tuesday, ... sunday): ").lower()
-        if day in day_list:
-            break
-        else:
-            print("Please input a valid day from the list or input 'all' to apply no day filter.")
+    city = get_user_input("Please enter city name (chicago, new york city, washington): ", city_list)
+    month = get_user_input("Please enter a period based on months (all, january, february, ... , june): ", month_list)
+    day = get_user_input("Please enter a day of the week (all, monday, tuesday, ... sunday): ", day_list)
 
     print('-' * 40)
     return city, month, day
